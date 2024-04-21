@@ -13,6 +13,8 @@ let computer_move = options[Math.floor(Math.random() * options.length)]
 let rock = document.querySelector('.rock');
 let paper = document.querySelector('.paper');
 let scissors = document.querySelector('.scissors');
+let resetBtn = document.querySelector('.reset-btn')
+
 
 let user_score = 0;
 let computer_score = 0;
@@ -20,6 +22,12 @@ let tie = 0;
 
 let score_board = `your score: ${user_score} : computer score: ${computer_score} tie: ${tie}`
 
+const resetScoreBoard = () =>{
+    user_score = 0;
+    computer_score = 0;
+    tie = 0;
+    alert(`score reseted : ${user_score} : ${computer_score} : ${tie}`)
+}
 
 
 const callGame = (user) => {
@@ -29,17 +37,20 @@ const callGame = (user) => {
     )
  {
     user_score ++;
-    alert(`you chose ${user} and computer chose ${computer_move}, you win \n
+    score_board = `your score: ${user_score} : computer score: ${computer_score} tie: ${tie}`
+    alert(`you chose ${user} and computer chose ${computer_move}, you win
     ${score_board}
     `)
     } else if (user === computer_move) {
     tie ++;
+    score_board = `your score: ${user_score} : computer score: ${computer_score} tie: ${tie}`
     alert(`you chose ${user} and computer chose ${computer_move}, tie game \n
     ${score_board}
     `)
     }
     else {
     computer_score ++;
+    score_board = `your score: ${user_score} : computer score: ${computer_score} tie: ${tie}`
     alert(`you chose ${user} and computer chose ${computer_move}, you lost \n
     ${score_board}
     `)
@@ -49,4 +60,5 @@ const callGame = (user) => {
 rock.addEventListener('click', () => callGame('rock')); // called using an anonymous function so it dont get invoked immediately
 paper.addEventListener('click', () => callGame('paper'));
 scissors.addEventListener('click', () => callGame('scissors'));
+resetBtn.addEventListener('click', resetScoreBoard)
 
