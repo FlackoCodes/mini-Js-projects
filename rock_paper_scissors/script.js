@@ -1,5 +1,6 @@
-// rules for rock paper scissors
 /* 
+rules for rock paper scissors
+
 rock beats scissors
 scissors beats paper
 paper beats rock
@@ -22,7 +23,9 @@ let resetBtn = document.querySelector('.reset-btn')
 /*
 Saving the score variables in local storage (permanently) so they don't get vanished on refresh.
 
-The `|| 0` ensures we get 0 when there is no score, so it doesn't return NaN.
+The `|| 0` ensures we get 0 when there is no score, so it doesn't return null.
+
+ParseInt converts the strings to an integer since localStorage deals with strings only by default
 */
 
 
@@ -39,8 +42,10 @@ const resetScoreBoard = () =>{
     user_score = 0;
     computer_score = 0;
     tie = 0;
+    updateScoreBoard()
 alert(`score reseted : ${user_score} : ${computer_score} : ${tie}`)
 }
+
 
 const updateScoreBoard = () => {
     score_board = `your score: ${user_score} : computer score: ${computer_score} tie: ${tie}`;
@@ -78,10 +83,8 @@ const callGame = (user) => {
     }
 }
 
-rock.addEventListener('click', () => callGame('rock')); // called using an anonymous function so it dont get invoked immediately
+rock.addEventListener('click', () => callGame('rock')); // called using an anonymous function(passing a reference of the callGame function) so it dont get invoked immediately
 paper.addEventListener('click', () => callGame('paper'));
 scissors.addEventListener('click', () => callGame('scissors'));
 resetBtn.addEventListener('click', resetScoreBoard)
 
-
-console.log(localStorage.getItem('message'));
