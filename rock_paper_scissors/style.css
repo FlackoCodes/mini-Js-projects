@@ -6,12 +6,15 @@
 
 
 body{
-    display: grid;
-    place-content: center;
-    min-height: 100vh;
     font-family: sans-serif;
 }
 
+.container{
+   width: 80%;
+   margin: 0 auto;
+   text-align: center;
+   padding: 1rem 0;
+}
 
 h1{
     padding: .5rem 0;
@@ -19,4 +22,5 @@ h1{
 
 button{
     margin: .2rem 0;
+   
 }

@@ -36,6 +36,18 @@ let computer_score = parseInt(localStorage.getItem('computer_score')) || 0;
 let tie = parseInt(localStorage.getItem('tie')) || 0;
 
 
+let gameResult = document.querySelector('.game-results')
+let gameMoves = document.querySelector('.game-move')
+
+let gameScore = document.querySelector('.game-score')
+const updateGameScore = () => {
+    gameScore.innerHTML = `your score: ${user_score} : computer score: ${computer_score} tie: ${tie}`;
+  }
+
+updateGameScore();
+  
+
+
 let score_board = `your score: ${user_score} : computer score: ${computer_score} tie: ${tie}`
 
 const resetScoreBoard = () =>{
@@ -43,6 +55,7 @@ const resetScoreBoard = () =>{
     computer_score = 0;
     tie = 0;
     updateScoreBoard()
+    updateGameScore();
 alert(`score reseted : ${user_score} : ${computer_score} : ${tie}`)
 }
 
@@ -56,35 +69,34 @@ const updateScoreBoard = () => {
 
 
 
-const callGame = (user) => {
+const callGame = (user, usermove, compmove) => {
     if (user === 'rock' && computer_move === 'scissors' 
     || user === 'scissors' && computer_move === 'paper'
     || user === 'paper' && computer_move === 'rock'
     )
  {
     user_score ++;
+    gameResult.innerHTML = `You win`
     updateScoreBoard()
-    alert(`you chose ${localStorage.getItem('user')} and computer chose ${localStorage.getItem('computer_move')}, you win
-    ${score_board}
-    `)
+    
     } else if (user === computer_move) {
     tie ++;
+    gameResult.innerHTML = `Draw game`
     updateScoreBoard()
-    alert(`you chose ${user} and computer chose ${computer_move}, tie game \n
-    ${score_board}
-    `)
+    
     }
     else {
     computer_score ++;
+    gameResult.innerHTML = `You lost`
     updateScoreBoard()
-    alert(`you chose ${user} and computer chose ${computer_move}, you lost \n
-    ${score_board}
-    `)
     }
+    gameMoves.innerHTML = `${usermove} - ${compmove}`
+    updateGameScore();
+
 }
 
-rock.addEventListener('click', () => callGame('rock')); // called using an anonymous function(passing a reference of the callGame function) so it dont get invoked immediately
-paper.addEventListener('click', () => callGame('paper'));
-scissors.addEventListener('click', () => callGame('scissors'));
+rock.addEventListener('click', () => callGame('rock', 'rock', computer_move)); // called using an anonymous function(passing a reference of the callGame function) so it dont get invoked immediately
+paper.addEventListener('click', () => callGame('paper', 'paper', computer_move));
+scissors.addEventListener('click', () => callGame('scissors', 'scissors', computer_move));
 resetBtn.addEventListener('click', resetScoreBoard)
 
