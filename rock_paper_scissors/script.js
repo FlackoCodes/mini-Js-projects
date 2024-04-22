@@ -19,6 +19,14 @@ let resetBtn = document.querySelector('.reset-btn')
 // let user_score = 0;
 // let computer_score = 0;
 // let tie = 0;
+/*
+Saving the score variables in local storage (permanently) so they don't get vanished on refresh.
+
+The `|| 0` ensures we get 0 when there is no score, so it doesn't return NaN.
+*/
+
+
+
 
 let user_score = parseInt(localStorage.getItem('user_score')) || 0;
 let computer_score = parseInt(localStorage.getItem('computer_score')) || 0;
