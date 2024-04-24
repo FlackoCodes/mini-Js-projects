@@ -6,24 +6,51 @@
 
 
 body{
+    background-color: hsl(228, 56%, 18%);
+    color: hsl(0, 0%, 100%);
     font-family: "Raleway", sans-serif;
     font-optical-sizing: auto;
     font-style: normal;
   }
 
-  
+
 .container{
    width: 80%;
    margin: 0 auto;
    text-align: center;
-   padding: 1rem 0;
+   padding: 5rem 0;
 }
 
 h1{
     padding: .5rem 0;
+    margin-bottom: 1rem;
 }
 
-button{
-    margin: .2rem 0;
-   
+.rock,
+.paper,
+.scissors
+{
+    border: none;
+    background-color: hsl(228, 56%, 18%);
+    border: 1px solid hsl(0, 0%, 100%);
+    padding: 1.5rem;
+    border-radius: 50%;
+    margin: 0 1rem;
+
+}
+
+.btns{
+    margin-bottom: 1rem;
+}
+
+img{
+    background-color: #141E46;
+    width: 70px;
+
+}
+
+.reset-btn{
+    border: none;
+    padding: .6rem 1rem;
+    margin: 1rem 1.5rem;
 }
