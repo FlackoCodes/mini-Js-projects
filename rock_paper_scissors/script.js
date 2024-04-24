@@ -56,7 +56,6 @@ const resetScoreBoard = () =>{
     tie = 0;
     updateScoreBoard()
     updateGameScore();
-alert(`score reseted : ${user_score} : ${computer_score} : ${tie}`)
 }
 
 
@@ -90,9 +89,8 @@ const callGame = (user, usermove, compmove) => {
     gameResult.innerHTML = `You lost`
     updateScoreBoard()
     }
-    gameMoves.innerHTML = `${usermove} - ${compmove}`
+    gameMoves.innerHTML = `User: ${usermove} - Computer: ${compmove}`
     updateGameScore();
-
 }
 
 rock.addEventListener('click', () => callGame('rock', 'rock', computer_move)); // called using an anonymous function(passing a reference of the callGame function) so it dont get invoked immediately
