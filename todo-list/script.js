@@ -15,9 +15,14 @@ const renderTodo = () =>{
 
     todoList.forEach(element => {
         const todo = element;
-        const html = `<p>${todo}</p>`
+        const html = `
+        <p>${todo} 
+        <button class="del-btns">Delete</button>
+        </p>
+        `
         allHtml+= html
         tododiv.innerHTML = allHtml;
+        console.log(allHtml);
 
 });
 }
@@ -34,4 +39,9 @@ const addToList = () =>{
 
 }
 
+const delelteElement = () =>{
+    const delBtn = document.querySelector('.del-btns');
+delBtn.addEventListener('click', ()=> console.log('button clicked'));
+}
+delelteElement()
 addBtn.addEventListener('click', addToList);
