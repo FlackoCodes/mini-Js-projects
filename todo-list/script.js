@@ -1,28 +1,37 @@
 const inputItem = document.querySelector('input');
 const addBtn = document.querySelector('.add-btn');
-const itemsDiv = document.querySelector('.todo-list-items')
+const itemsDiv = document.querySelector('.todo-list-items');
 
 const date = document.getElementById('date-select');
 
-const todoList = []
 
-const todo = document.querySelector('.todo')
-const dateTodo = document.querySelector('.date')
+const dateTodo = document.querySelector('.date');
+const tododiv = document.querySelector('.todo-list')
 
-const getInputData = () =>{
-    const itemAdded = inputItem.value
-    todoList.push(itemAdded)
-    inputItem.value = ''
-    todo.textContent = todoList[0]
-    dateTodo.textContent = date.value
-    
+const todoList = ['get the job', 'go to Oda', 'network', 'finish school'];
 
-    // itemsDiv.innerHTML = ''; 
-    // todoList.forEach(element => {
-    //     const p = document.createElement('p');
-    //     p.textContent = element;
-    //     itemsDiv.appendChild(p)
-    // });
+const renderTodo = () =>{
+    let allHtml = ""
+
+    todoList.forEach(element => {
+        const todo = element;
+        const html = `<p>${todo}</p>`
+        allHtml+= html
+        tododiv.innerHTML = allHtml;
+
+});
 }
 
-addBtn.addEventListener('click', getInputData)
+renderTodo()
+
+
+const addToList = () =>{
+   const todoItem = inputItem.value;
+   todoList.push(todoItem);
+   inputItem.value = "";
+   renderTodo()
+
+
+}
+
+addBtn.addEventListener('click', addToList);
