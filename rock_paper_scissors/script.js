@@ -17,6 +17,8 @@ let scissors = document.querySelector('.scissors');
 let resetBtn = document.querySelector('.reset-btn')
 
 
+let autoPlayBtn = document.querySelector('.auto-play-btn')
+
 // let user_score = 0;
 // let computer_score = 0;
 // let tie = 0;

@@ -49,8 +49,10 @@ img{
 
 }
 
-.reset-btn{
+.reset-btn, .auto-play-btn{
+    cursor: pointer;
     border: none;
     padding: .6rem 1rem;
     margin: 1rem 1.5rem;
 }
+
