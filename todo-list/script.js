@@ -8,23 +8,29 @@ const date = document.getElementById('date-select');
 const dateTodo = document.querySelector('.date');
 const tododiv = document.querySelector('.todo-list')
 
-const todoList = ['get the job', 'go to Oda', 'network', 'finish school'];
+const todoList = [
+    {name:'get the job', doDate: '2024-08-30'},
+    { name:'go to Oda', doDate: '2024-09-30' }
+];
 
 const renderTodo = () =>{
     let allHtml = ""
 
-    todoList.forEach(element => {
-        const todo = element;
+    todoList.forEach((element, index) => {
+        const todoObject = element;
+        const {name, doDate} = todoObject
         const html = `
-        <p>${todo} 
-        <button class="del-btns">Delete</button>
-        </p>
+        <div>${name}</div>
+        <div>${doDate}</div>
+        <button class="del-btns" data-index = ${index}
+        ">Delete</button>
+        </div>
         `
         allHtml+= html
-        tododiv.innerHTML = allHtml;
-        console.log(allHtml);
-
 });
+
+    tododiv.innerHTML = allHtml;
+
 }
 
 renderTodo()
@@ -32,16 +38,29 @@ renderTodo()
 
 const addToList = () =>{
    const todoItem = inputItem.value;
-   todoList.push(todoItem);
+   const itemDate = date.value
+   todoList.push({name:todoItem, doDate:itemDate});
+   console.log(todoList);
    inputItem.value = "";
+   date.value = ""
    renderTodo()
 
-
 }
 
-const delelteElement = () =>{
-    const delBtn = document.querySelector('.del-btns');
-delBtn.addEventListener('click', ()=> console.log('button clicked'));
+const delTodo = (index) =>{
+    todoList.splice(index, 1)
+    renderTodo()
 }
-delelteElement()
+
+const checkIndex = (e) =>{
+    if (e.target.classList.contains('del-btns')) {
+        const index = parseInt(e.target.dataset.index)
+        delTodo(index)
+    }
+}
+
+tododiv.addEventListener('click', checkIndex)
 addBtn.addEventListener('click', addToList);
+
+
+

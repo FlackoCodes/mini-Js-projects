@@ -100,3 +100,7 @@ paper.addEventListener('click', () => callGame('paper', 'paper', computer_move))
 scissors.addEventListener('click', () => callGame('scissors', 'scissors', computer_move));
 resetBtn.addEventListener('click', resetScoreBoard)
 
+
+// work on this next week. the autoplay feature and the images appearing in the game.
+
+// use keydown event listeners to make r, p and s play the game
