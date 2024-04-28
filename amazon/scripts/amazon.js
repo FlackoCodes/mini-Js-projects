@@ -1,9 +1,8 @@
 import { cart, addTocart } from "../data/cart.js";
 import { products } from "../data/products.js"
-
+import { formatCurrency } from "./utils/price.js"
 
 let allHtml = ""
-
 
 products.forEach(product => {
     let html = `
@@ -27,7 +26,7 @@ products.forEach(product => {
         </div>
 
         <div class="product-price">
-            $${parseFloat(product.priceCents / 100).toFixed(2)}
+            $${formatCurrency(product.priceCents)}
         </div>
 
         <div class="product-quantity-container">
@@ -53,7 +52,7 @@ products.forEach(product => {
         </div>
 
         <button class="add-to-cart-button button-primary" data-product-id="${product.id}"
-        data-product-price="${(product.priceCents / 100).toFixed(2)}" 
+        data-product-price="${formatCurrency(product.priceCents)}" 
         >
             Add to Cart
         </button>
@@ -62,20 +61,10 @@ products.forEach(product => {
     allHtml += html
 });
 
-
 let productGrid = document.querySelector('.products-grid');
 productGrid.innerHTML = allHtml;
 
-// adding to cart functionality
-
 const addToCartButton = document.querySelectorAll('.button-primary')
-
-// const increaseCartNumber = ()=>{
-//     const cartTotal = document.querySelector('.cart-quantity');
-//     let cartNum = Number(cart.textContent)
-//     cartNum++
-//     cart.textContent = cartNum
-// }
 
 addToCartButton.forEach(button => {
     button.addEventListener('click', () => {
@@ -84,11 +73,10 @@ addToCartButton.forEach(button => {
 
         // checking if the product clicked is already in the cart
 
-
         let matchingItem;
 
         cart.forEach(item => {
-            if (productId === item.productId) {
+            if (productId === item.productID) {
                 matchingItem = item;
             } 
         });
@@ -100,8 +88,6 @@ addToCartButton.forEach(button => {
                 quantity: 1,
             })
         }
-
        addTocart()
-       
     })
 });
