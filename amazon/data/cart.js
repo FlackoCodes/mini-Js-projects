@@ -24,7 +24,8 @@ export const addTocart =() =>{
 }
 
 export const removeFromCart = (productID)=>{
-
         const newCart = cart.filter((element) => element.productID !== productID);
         cart = newCart;
+        const cartLink = document.querySelector('.cart-item-container')
+        cartLink.remove()
 }

@@ -1,6 +1,7 @@
 import { cart } from "../data/cart.js"
 import { products } from "../data/products.js"
 import { formatCurrency } from "./utils/price.js"
+import { removeFromCart } from "../data/cart.js"
 
 let cartSummaryHtml = ""
 
@@ -16,7 +17,7 @@ cart.forEach(element => {
 
 
     let html =   `
-    <div class="cart-item-container">
+    <div class="cart-item-container js-cart-prod-id-${matchingProduct.id}">
     <div class="delivery-date">
       Delivery date: Tuesday, June 21
     </div>
@@ -104,6 +105,9 @@ const deleteLink = document.querySelectorAll('.delete-quantity-link');
 deleteLink.forEach(link => {
   link.addEventListener('click', ()=>{
     let delLinkId = link.dataset.productId;
-    console.log(delLinkId);
+    
+    const container = document.querySelector(`.js-cart-prod-id-${delLinkId}`);
+    container.remove()
+
   })
 });
