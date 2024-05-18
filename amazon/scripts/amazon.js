@@ -1,11 +1,11 @@
 // import { products } from "../data/products";
 
-let allHtml = ""
+let productsHtml = ""
 let allProducts = document.querySelector('.products-grid');
 
 
 products.forEach(product => {
-    allHtml += `<div class=
+    productsHtml += `<div class=
     "product-container">
         <div class="product-image-container">
             <img class="product-image"
@@ -57,8 +57,7 @@ products.forEach(product => {
         </button>
         </div>`
 });
-allProducts.innerHTML = allHtml;
-
+allProducts.innerHTML = productsHtmlHtml;
 
 
 const addToCartButton = document.querySelectorAll('.button-primary');
