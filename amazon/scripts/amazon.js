@@ -50,14 +50,16 @@ products.forEach(product => {
             Added
         </div>
 
-        <button class="add-to-cart-button button-primary"
-        data-product-name="${product.name}"
+        <button class="add-to-cart-button button-primary" data-product-id="${product.id}"
+        data-product-name=${product.name}
         >
-            Add to Cart
+        Add to Cart
         </button>
         </div>`
 });
-allProducts.innerHTML = productsHtmlHtml;
+
+// data attribute in HTMl, used to store extra information for js manipulation.
+allProducts.innerHTML = productsHtml;
 
 
 const addToCartButton = document.querySelectorAll('.button-primary');
@@ -74,3 +76,36 @@ const carQuantity = document.querySelector('.cart-quantity');
 
 
 // dataset used to get all the data attributes that are assigned to a tag
+
+addToCartButton .forEach((button) =>{
+    button.addEventListener('click', ()=>{
+        let productName = button.dataset.productName;
+        let productId = button.dataset.productId;
+
+        let matchingCartItem;
+
+        cart.forEach((cartItem) =>{
+            if (productId === cartItem.productId) {
+                matchingCartItem = cartItem;
+            }
+        })
+
+        if (!matchingCartItem) {
+            cart.push({
+                productId,
+                productName,
+                quantity: 1,
+            })
+        } else{
+            matchingCartItem.quantity ++;
+        }
+        
+        console.log(cart);
+    })
+}
+)
+
+/* adding to cart functionality 
+-- add to cart if the product is not already in the cart
+-- else if product is in the cart, increas its quantity.
+*/
