@@ -75,27 +75,3 @@ const carQuantity = document.querySelector('.cart-quantity');
 
 
 // dataset used to get all the data attributes that are assigned to a tag
-addToCartButton.forEach((button) =>{
-    const productName = button.dataset.productName;
-
-    let matchingItem;
-
-    cart.forEach(item => {
-        if (productName === item.productName) {
-            matchingItem = item;
-        }
-        if (matchingItem) {
-            matchingItem.quantity ++;
-        } else {
-            button.addEventListener('click', ()=>{
-                cart.push({productName: productName,
-                    quantity:1},
-                );
-                console.log(cart);
-            })
-        }
-    });
-
-
-}) 
-
