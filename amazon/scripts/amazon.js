@@ -1,4 +1,5 @@
-// import { products } from "../data/products";
+import { products } from "../data/products.js";
+import { cart, addToCart } from "../data/cart.js";
 
 let productsHtml = ""
 let allProducts = document.querySelector('.products-grid');
@@ -51,7 +52,7 @@ products.forEach(product => {
         </div>
 
         <button class="add-to-cart-button button-primary" data-product-id="${product.id}"
-        data-product-name=${product.name}
+        data-product-name="${product.name}"
         >
         Add to Cart
         </button>
@@ -68,38 +69,23 @@ const cartItemContainer = document.querySelectorAll('.cart-item-container');
 
 const carQuantity = document.querySelector('.cart-quantity');
 
-// const increaseCartQuantity = ()=>{
-//     let cart = parseInt(carQuantity.textContent);
-//     cart ++;
-//     carQuantity.textContent = cart;
-// }
+
+const increaseCartQuantity = ()=>{
+    let cartTotal = parseInt(carQuantity.textContent);
+    cartTotal ++;
+    carQuantity.textContent = cartTotal;
+}
 
 
 // dataset used to get all the data attributes that are assigned to a tag
 
-addToCartButton .forEach((button) =>{
+addToCartButton.forEach((button) =>{
     button.addEventListener('click', ()=>{
         let productName = button.dataset.productName;
         let productId = button.dataset.productId;
 
-        let matchingCartItem;
-
-        cart.forEach((cartItem) =>{
-            if (productId === cartItem.productId) {
-                matchingCartItem = cartItem;
-            }
-        })
-
-        if (!matchingCartItem) {
-            cart.push({
-                productId,
-                productName,
-                quantity: 1,
-            })
-        } else{
-            matchingCartItem.quantity ++;
-        }
-        
+        addToCart(productId, productName)
+        increaseCartQuantity()
         console.log(cart);
     })
 }
