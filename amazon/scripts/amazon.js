@@ -65,8 +65,6 @@ allProducts.innerHTML = productsHtml;
 
 const addToCartButton = document.querySelectorAll('.button-primary');
 
-const cartItemContainer = document.querySelectorAll('.cart-item-container');
-
 const carQuantity = document.querySelector('.cart-quantity');
 
 
