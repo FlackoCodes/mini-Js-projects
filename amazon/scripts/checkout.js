@@ -1,4 +1,4 @@
-import { cart} from "../data/cart.js";
+import { cart, removeItemFromCart} from "../data/cart.js";
 import { products } from "../data/products.js";
 
 const orderSummary = document.querySelector('.order-summary');
@@ -17,7 +17,9 @@ cart.forEach((cartItem) =>{
         }
     })
 
-        cartSummaryHtml += `<div class="cart-item-container">
+        cartSummaryHtml += `<div class="cart-item-container
+        js-cart-${matchingProduct.id}
+        ">
         <div class="delivery-date">
         Delivery date: Tuesday, June 21
         </div>
@@ -39,7 +41,7 @@ cart.forEach((cartItem) =>{
           <span class="update-quantity-link link-primary">
             Update
           </span>
-          <span class="delete-quantity-link link-primary">
+          <span class="delete-quantity-link link-primary" data-product-id="${matchingProduct.id}">
             Delete
           </span>
         </div>
@@ -52,7 +54,7 @@ cart.forEach((cartItem) =>{
         <div class="delivery-option">
           <input type="radio" checked
             class="delivery-option-input"
-            name="delivery-option-1">
+            name="delivery-option-${matchingProduct.id}">
           <div>
             <div class="delivery-option-date">
               Tuesday, June 21
@@ -65,7 +67,7 @@ cart.forEach((cartItem) =>{
         <div class="delivery-option">
           <input type="radio"
             class="delivery-option-input"
-            name="delivery-option-1">
+            name="delivery-option-${matchingProduct.id}">
           <div>
             <div class="delivery-option-date">
               Wednesday, June 15
@@ -78,7 +80,7 @@ cart.forEach((cartItem) =>{
         <div class="delivery-option">
           <input type="radio"
             class="delivery-option-input"
-            name="delivery-option-1">
+            name="delivery-option-${matchingProduct.id}">
           <div>
             <div class="delivery-option-date">
               Monday, June 13
@@ -94,4 +96,19 @@ cart.forEach((cartItem) =>{
 })
 
 orderSummary.innerHTML = cartSummaryHtml;
-console.log(cartSummaryHtml);
+// console.log(cartSummaryHtml);
+
+
+
+const deleteLink = document.querySelectorAll('.link-primary');
+deleteLink.forEach((link) =>{
+    link.addEventListener('click', ()=>{
+        const productId = link.dataset.productId;
+        removeItemFromCart(productId);
+
+        const toDelete = document.querySelector(`.js-cart-${productId}`)
+        console.log(cart);
+        console.log(toDelete);
+        toDelete.remove();
+    })
+})
