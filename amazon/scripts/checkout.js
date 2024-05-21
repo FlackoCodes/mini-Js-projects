@@ -106,7 +106,7 @@ deleteLink.forEach((link) =>{
         const productId = link.dataset.productId;
         removeItemFromCart(productId);
 
-        const toDelete = document.querySelector(`.js-cart-${productId}`)
+        const toDelete = document.querySelector(`.js-cart-${productId}`) // using the productid to get the correct container to remove
         console.log(cart);
         console.log(toDelete);
         toDelete.remove();
